@@ -21,7 +21,6 @@ public class Generate_Parentheses {
      * @return
      */
     public List<String> generateParenthesis(int n) {
-
         List<String> list = new ArrayList<>();
         generate(n, 0, "", list);
         return list;
@@ -35,7 +34,6 @@ public class Generate_Parentheses {
 
         if (right > 0) {
             generate(left, right - 1, str + ")", list);
-            generate(left - 1, right + 1, str + "(", list);
         }
         if (left > 0) {
             generate(left - 1, right + 1, str + "(", list);
