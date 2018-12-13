@@ -54,7 +54,7 @@ public class Remove_Duplicates_from_Sorted_List_II {
             if (slowVal == fastVal) {
                 count++;
                 temp.next = null;
-                if(fast.next == null && count == 1){
+                if (fast.next == null && count == 1) {
                     temp.next = fast;
                 }
                 fast = fast.next;
