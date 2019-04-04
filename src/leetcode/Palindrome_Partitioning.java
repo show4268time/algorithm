@@ -23,14 +23,14 @@ public class Palindrome_Partitioning {
     }
 
     public void partition(String s, List<List<String>> result, List<String> item, int cur) {
-        if(cur == s.length()){
+        if (cur == s.length()) {
             result.add(new ArrayList<>(item));
             return;
         }
 
-        for(int i  = cur; i < s.length(); i++){
+        for (int i = cur; i < s.length(); i++) {
             String str = s.substring(cur, i + 1);
-            if(isPalindrome(str)){
+            if (isPalindrome(str)) {
                 item.add(str);
                 partition(s, result, item, i + 1);
                 item.remove(item.size() - 1);
@@ -40,7 +40,7 @@ public class Palindrome_Partitioning {
 
     public boolean isPalindrome(String s) {
         for (int left = 0, right = s.length() - 1; left <= right; left++, right--) {
-            if(s.charAt(left) != s.charAt(right)) return false;
+            if (s.charAt(left) != s.charAt(right)) return false;
         }
         return true;
     }
