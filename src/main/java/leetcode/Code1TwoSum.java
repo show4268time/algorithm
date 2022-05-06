@@ -7,7 +7,7 @@ package main.java.leetcode;
  *
  * You can return the answer in any order.
  */
-public class code1twoSum {
+public class Code1TwoSum {
     public int[] twoSum(int[] nums, int target) {
         for(int i = 1; i < nums.length; i ++){
             for(int j =i; j < nums.length; j++){

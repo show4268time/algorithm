@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Given a string s, find the length of the longest substring without repeating characters.
  */
-public class code3lengthOfLongestSubstring {
+public class Code3LengthOfLongestSubstring {
     public int lengthOfLongestSubstring(String s) {
         int fastCursor = 0;
         int slowCursor = 0;

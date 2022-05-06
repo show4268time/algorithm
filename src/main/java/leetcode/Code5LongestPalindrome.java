@@ -5,7 +5,7 @@ package main.java.leetcode;
  * @create: 2022-05-06 10:27
  * @Description: Given a string s, return the longest palindromic substring in s.
  */
-public class code5longestPalindrome {
+public class Code5LongestPalindrome {
     private int max = 0;
 
     private String res = "";

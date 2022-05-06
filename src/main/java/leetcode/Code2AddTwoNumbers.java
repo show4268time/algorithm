@@ -7,7 +7,7 @@ package main.java.leetcode;
  * <p>
  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  */
-public class code2addTwoNumbers {
+public class Code2AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(0);
         ListNode p = l1, q = l2, curr = dummyHead;
