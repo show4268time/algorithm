@@ -1,5 +1,7 @@
 package main.java.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @author: PhilipFry
  * @create: 2022-05-10 18:09
@@ -9,14 +11,20 @@ package main.java.leetcode;
  */
 public class Code300LengthOfLIS {
     public int lengthOfLIS(int[] nums) {
-        Integer max = Integer.MIN_VALUE;
-        for(int i = 0; i < nums.length; i++){
-            int left, right = i;
-            while (left>= 0 && right)
+        int[] dp = new int[nums.length];
+        int res = Integer.MIN_VALUE;
+        Arrays.fill(dp, 1);
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
         }
+        for(int index = 0; index < dp.length; index++){
+            res = Math.max(res, dp[index]);
+        }
+        return res;
     }
 
-    private int dp(int i, int j) {
-
-    }
 }
