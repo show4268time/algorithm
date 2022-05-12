@@ -31,7 +31,7 @@ public class Code144PreorderTraversal {
     private List<Integer> result = new ArrayList<>();
 
     public List<Integer> preorderTraversal(TreeNode root) {
-        if (root != null){
+        if (root != null) {
             result.add(root.val);
             preorderTraversal(root.left);
             preorderTraversal(root.right);
