@@ -14,15 +14,15 @@ public class Contest2275LargestCombination {
         // 记录该二进制位上值为1的元素的个数
         int[] n = new int[24];  //2的24次方 > 题目说取值最大为10的七次方，所以24位即可
         int max = 0;
-        for(int c : candidates) {   // 遍历所有元素
-            for(int i = 0; i < n.length; i++) { // 遍历每一二进制位
-                if((c & (1 << i)) > 0) {    // 该位为1，则n[i]加1
+        for (int c : candidates) {   // 遍历所有元素
+            for (int i = 0; i < n.length; i++) { // 遍历每一二进制位
+                if ((c & (1 << i)) > 0) {    // 该位为1，则n[i]加1
                     n[i]++;
                 }
             }
         }
         // 取二进制为元素的个数最大值
-        for(int a : n) {
+        for (int a : n) {
             max = Math.max(a, max);
         }
         return max;
