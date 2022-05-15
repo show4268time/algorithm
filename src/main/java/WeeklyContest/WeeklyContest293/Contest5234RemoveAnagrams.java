@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Contest5234RemoveAnagrams {
     public static void main(String[] args) {
-        String[] words = new String[]{"z","z","z","gsw","wsg","gsw","krptu"};
+        String[] words = new String[]{"z", "z", "z", "gsw", "wsg", "gsw", "krptu"};
 
         removeAnagrams(words);
     }
@@ -63,7 +63,7 @@ public class Contest5234RemoveAnagrams {
                     map = hashMap;
                     result.add(word);
                 }
-            }else {
+            } else {
                 map = hashMap;
                 result.add(word);
             }

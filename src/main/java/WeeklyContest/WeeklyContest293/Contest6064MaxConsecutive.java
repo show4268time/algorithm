@@ -1,8 +1,6 @@
 package WeeklyContest.WeeklyContest293;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author: PhilipFry
@@ -15,7 +13,7 @@ import java.util.Set;
  */
 public class Contest6064MaxConsecutive {
     public static void main(String[] args) {
-        int[] special = new int[]{39,46,2,14,13,42};
+        int[] special = new int[]{39, 46, 2, 14, 13, 42};
         maxConsecutive(2, 49, special);
     }
 
@@ -23,11 +21,11 @@ public class Contest6064MaxConsecutive {
         Arrays.sort(special);
         int length = special.length;
 
-        int max = Math.max(special[0] - bottom, top - special[special.length - 1] );
-        for(int i = 1; i < length; i++){
-            max = Math.max(max, special[i] - special[i -1] - 1);
+        int max = Math.max(special[0] - bottom, top - special[special.length - 1]);
+        for (int i = 1; i < length; i++) {
+            max = Math.max(max, special[i] - special[i - 1] - 1);
         }
 
-        return max ;
+        return max;
     }
 }
