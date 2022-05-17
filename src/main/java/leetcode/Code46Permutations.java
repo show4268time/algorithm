@@ -24,16 +24,16 @@ public class Code46Permutations {
     }
 
     public void backtrack(int[] nums) {
-        if(track.size() == nums.length){
+        if (track.size() == nums.length) {
             result.add(new LinkedList<>(track));
         }
 
-        for(int i = 0; i < nums.length; i++){
-            if (used[i]){
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) {
                 continue;
             }
             used[i] = Boolean.TRUE;
-            track.add(nums[i] );
+            track.add(nums[i]);
             backtrack(nums);
             track.removeLast();
             used[i] = Boolean.FALSE;
