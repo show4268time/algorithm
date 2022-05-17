@@ -11,26 +11,32 @@ import java.util.List;
  * You can return the answer in any order.
  */
 public class Code46Permutations {
+    List<List<Integer>> result = new ArrayList<>();
+    LinkedList<Integer> track = new LinkedList<>();
+
+    boolean[] used;
+
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
-        backtrack(nums, track, result);
+        used = new boolean[nums.length];
+        backtrack(nums);
 
         return result;
     }
 
-    public void backtrack(int[] nums, LinkedList track, List<List<Integer>> result) {
-        if (track.size() == nums.length) {
-            result.add(new LinkedList(track));
+    public void backtrack(int[] nums) {
+        if(track.size() == nums.length){
+            result.add(new LinkedList<>(track));
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            if(track.contains(nums[i])){
+        for(int i = 0; i < nums.length; i++){
+            if (used[i]){
                 continue;
             }
-            track.add(nums[i]);
-            backtrack(nums, track, result);
+            used[i] = Boolean.TRUE;
+            track.add(nums[i] );
+            backtrack(nums);
             track.removeLast();
+            used[i] = Boolean.FALSE;
         }
     }
 }
