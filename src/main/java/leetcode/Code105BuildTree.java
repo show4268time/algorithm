@@ -6,7 +6,8 @@ import java.util.Map;
 /**
  * @author: PhilipFry
  * @create: 2022-05-14 12:01
- * @Description: Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and
+ * @Description:
+ * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and
  * inorder is the inorder traversal of the same tree,
  * construct and return the binary tree.
  */
