@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.code100;
 
 /**
  * @author: PhilipFry
