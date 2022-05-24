@@ -14,17 +14,17 @@ public class Code128LongestConsecutive {
         int count = 1;
         int max = 0;
         Arrays.sort(nums);
-        if(nums.length == 1){
+        if (nums.length == 1) {
             return 1;
         }
         int left = 0;
         int right = 1;
-        while(right < nums.length){
-            if(nums[right] - nums[left] == 1){
+        while (right < nums.length) {
+            if (nums[right] - nums[left] == 1) {
                 count++;
-            }else if (nums[right] - nums[left] == 0){
+            } else if (nums[right] - nums[left] == 0) {
 
-            }else{
+            } else {
                 count = 1;
             }
             max = Math.max(max, count);
