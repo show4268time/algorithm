@@ -27,6 +27,7 @@ public class Code90SubsetsWithDup {
             res.add(new ArrayList<>(path));
             return;
         }
+
         int temp = index;
         while (temp < nums.length && nums[temp] == nums[index]) temp++;
         int count = temp - index;

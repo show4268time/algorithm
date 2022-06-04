@@ -26,7 +26,6 @@ public class Code78Subsets {
         }
 
         dfs(nums, index + 1);
-
         path.add(nums[index]);
         dfs(nums, index + 1);
         path.removeLast();
