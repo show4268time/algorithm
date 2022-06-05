@@ -21,13 +21,13 @@ public class Contest2293MinMaxGame {
 
         int left = 0, right = 1, med = 0;
         while (right < nums.length) {
-            if (med % 2 == 0){
+            if (med % 2 == 0) {
                 num[med] = Math.min(nums[left], nums[right]);
-            }else {
+            } else {
                 num[med] = Math.max(nums[left], nums[right]);
             }
-            left+=2;
-            right+=2;
+            left += 2;
+            right += 2;
             med++;
         }
         return minMaxGame(num);
