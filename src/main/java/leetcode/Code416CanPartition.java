@@ -29,4 +29,24 @@ public class Code416CanPartition {
         }
         return dp[nums.length][sum];
     }
+
+    public boolean canPartition2(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+
+        if (sum % 2 > 0) return false;
+        sum = sum / 2;
+
+        boolean[] dp = new boolean[sum + 1];
+        dp[0] = true;
+        for (int i = 1; i <= nums.length; i++) {
+            int t = nums[i - 1];
+            for (int j = sum; j >= t; j--) {
+                dp[j] = dp[j] || dp[j - t];
+            }
+        }
+        return dp[sum];
+    }
 }
