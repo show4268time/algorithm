@@ -28,8 +28,8 @@ public class Code279NumSquares {
 
         dp[0][0] = 0;
 
-        for (int i = 1; i *i <= length; i++) {
-            int num = i *i;
+        for (int i = 1; i * i <= length; i++) {
+            int num = i * i;
             for (int j = 0; j <= n; j++) {
                 dp[i][j] = dp[i - 1][j];
                 if (num <= j) {
