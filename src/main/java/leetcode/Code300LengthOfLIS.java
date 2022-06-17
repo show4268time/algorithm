@@ -12,8 +12,8 @@ import java.util.Arrays;
 public class Code300LengthOfLIS {
     public int lengthOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
-        int res = Integer.MIN_VALUE;
         Arrays.fill(dp, 1);
+
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[i] > nums[j]) {
@@ -21,10 +21,11 @@ public class Code300LengthOfLIS {
                 }
             }
         }
-        for(int index = 0; index < dp.length; index++){
-            res = Math.max(res, dp[index]);
-        }
-        return res;
-    }
 
+        int max = 0;
+        for (int i = 0; i < dp.length; i++) {
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
 }
