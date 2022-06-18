@@ -1,9 +1,7 @@
 package leetcode.code50;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author: PhilipFry
@@ -13,45 +11,30 @@ import java.util.Map;
  * Note that 1 does not map to any letters.
  */
 public class Code17LetterCombinations {
-    private static Map<Character, String> map = new HashMap<>();
-
-    static {
-        map.put('2', "abc");
-        map.put('3', "def");
-        map.put('4', "ghi");
-        map.put('5', "jkl");
-        map.put('6', "mno");
-        map.put('7', "pqrs");
-        map.put('8', "tuv");
-        map.put('9', "wxyz");
-
-    }
+    List<String> res = new ArrayList<>();
+    String[] phone = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
     public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
-
-        if (digits.isEmpty() || digits == "") {
-            return result;
-        }
-
-        letterCombinations("", 0, digits.toCharArray(), result);
-        return result;
+        if (digits.length() == 0) return res;
+        back("", 0, digits);
+        return res;
     }
 
-    public void letterCombinations(String pre, int i, char[] chars, List<String> result) {
-        if (i == chars.length) {
-            result.add(pre);
-           return ;
+    private void back(String pre, int index, String digits) {
+        if (index == digits.length()) {
+            res.add(pre);
+            return;
         }
 
-        if (map.get(chars[i]) == null) {
-             letterCombinations(pre, i+1, chars, result);
-        } else {
-            String s = map.get(chars[i]);
-            for (char c : map.get(chars[i]).toCharArray()) {
-                letterCombinations(pre + c, i + 1, chars, result);
+        char c = digits.charAt(index);
+        String str = phone[c - '0'];
+        if (str.length() > 0) {
+            for (int i = 0; i < str.length(); i++) {
+                String s = pre + str.charAt(i);
+                back(s, index + 1, digits);
             }
+        } else {
+            back(pre, index + 1, digits);
         }
     }
-
 }
