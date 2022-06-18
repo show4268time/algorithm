@@ -1,25 +1,20 @@
 package leetcode.code50;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Given a string s, find the length of the longest substring without repeating characters.
  */
 public class Code3LengthOfLongestSubstring {
     public int lengthOfLongestSubstring(String s) {
-        int fastCursor = 0;
-        int slowCursor = 0;
-        Set<Character> set = new HashSet<>();
-        int max = 0;
-        while (fastCursor < s.length()) {
-            if (!set.contains(s.charAt(fastCursor))) {
-                set.add(s.charAt(fastCursor++));
-                max = Math.max(max,set.size());
-            } else {
-                set.remove(s.charAt(slowCursor++));
+        int[] array = new int[128];
+        int res = 0;
+        for (int left = 0, right = 0; right < s.length(); right++) {
+            array[s.charAt(right)]++;
+            while (array[s.charAt(right)] > 1) {
+                array[s.charAt(left)]--;
+                left++;
             }
+            res = Math.max(res, right - left + 1);
         }
-        return max;
+        return res;
     }
 }
