@@ -12,41 +12,37 @@ import java.util.List;
  */
 public class Code15ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (nums == null || nums.length < 3) {
-            return result;
-        }
+        int n = nums.length;
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+
         Arrays.sort(nums);
-        int main = 0;
-        while (main < nums.length - 2) {
-            if (nums[main] > 0) {
-                break;
-            }
-            int low = main + 1;
-            int high = nums.length - 1;
-            while (low < high) {
-                long sum = (long) (nums[main] + nums[low] + nums[high]);
-                if (sum == 0) {
-                    result.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{nums[main], nums[low], nums[high]})));
+        //确定第一个数
+        for (int i = 0; i < n; i++) {
+            if (i != 0 && nums[i] == nums[i - 1]) continue;
+            int l = i + 1, r = n - 1;
+
+            while (l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
+                if (sum > 0) {
+                    r--;
+                    continue;
                 }
-                if (sum <= 0) {
-                    while (low + 1 < high && nums[low] == nums[low + 1]) {
-                        low++;
-                    }
-                    low++;
+                if (sum < 0) {
+                    l++;
+                    continue;
                 }
-                if (sum >= 0) {
-                    while (low < high - 1 && nums[high] == nums[high - 1]) {
-                        high--;
-                    }
-                    high--;
-                }
+                //sum == 0时
+                ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                //去除重复处理
+                do {
+                    l++;
+                } while (l < r && nums[l] == nums[l - 1]);
+                do {
+                    r--;
+                } while (l < r && nums[r] == nums[r + 1]);
             }
-            while (main + 1 < nums.length - 2 && nums[main] == nums[main + 1]) {
-                main++;
-            }
-            main++;
+
         }
-        return result;
+        return ans;
     }
 }
