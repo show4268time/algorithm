@@ -12,31 +12,68 @@ import java.util.List;
  * For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
  */
 public class Code279NumSquares {
-    int INF = 0x3f3f3f3f;
-
     public int numSquares(int n) {
         List<Integer> list = new ArrayList<>();
-        int s = 1;
-        while (s * s <= n) {
-            list.add(s * s);
-            s++;
+        for (int i = 1; i * i <= n; i++) {
+            list.add(i);
         }
-        int length = list.size();
-        int[][] dp = new int[length + 1][n + 1];
 
-        Arrays.fill(dp[0], INF);
-
+        int m = list.size();
+        int[][] dp = new int[m + 1][n + 1];
+        Arrays.fill(dp[0], 0x3f3f3f3f);
         dp[0][0] = 0;
-
-        for (int i = 1; i * i <= length; i++) {
-            int num = i * i;
+        for (int i = 1; i <= m; i++) {
+            int x = i * i;
             for (int j = 0; j <= n; j++) {
                 dp[i][j] = dp[i - 1][j];
-                if (num <= j) {
-                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - num] + 1);
+                for (int k = 1; k * x <= j; k++) {
+                    if (dp[i - 1][j - k * x] != 0x3f3f3f3f) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - k * x] + k);
+                    }
                 }
             }
         }
-        return dp[length][n];
+        return dp[m][n];
+    }
+
+    public int numSquares1(int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i * i <= n; i++) {
+            list.add(i);
+        }
+
+        int m = list.size();
+        int[][] dp = new int[m + 1][n + 1];
+        Arrays.fill(dp[0], 0x3f3f3f3f);
+        dp[0][0] = 0;
+        for (int i = 1; i <= m; i++) {
+            int x = i * i;
+            for (int j = 0; j <= n; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= x) {
+                    dp[i][j] = Math.min(dp[i][j], dp[i][j - x] + 1);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    public int numSquares2(int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i * i <= n; i++) {
+            list.add(i);
+        }
+
+        int m = list.size();
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, 0x3f3f3f3f);
+        dp[0] = 0;
+        for (int i = 1; i <= m; i++) {
+            int x = i * i;
+            for (int j = x; j <= n; j++) {
+                dp[j] = Math.min(dp[j], dp[j - x] + 1);
+            }
+        }
+        return dp[n];
     }
 }
