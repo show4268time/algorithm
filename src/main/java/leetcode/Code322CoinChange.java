@@ -20,15 +20,15 @@ public class Code322CoinChange {
     }
 
     public int coinChange2(int[] coins, int amount) {
-        int[][] dp = new int[coins.length +1][amount +1];
+        int[][] dp = new int[coins.length + 1][amount + 1];
         Arrays.fill(dp[0], 0x3f3f3f3f);
         dp[0][0] = 0;
-        for(int i = 1; i <= coins.length; i++){
-            int coin = coins[i-1];
-            for(int j = 0; j <= amount; j++){
-                dp[i][j] = dp[i-1][j];
-                if(coin <= j){
-                    dp[i][j] = Math.min(dp[i-1][j], dp[i][j - coin] + 1);
+        for (int i = 1; i <= coins.length; i++) {
+            int coin = coins[i - 1];
+            for (int j = 0; j <= amount; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (coin <= j) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - coin] + 1);
                 }
             }
         }
@@ -52,6 +52,20 @@ public class Code322CoinChange {
         }
         memo[amount] = res == Integer.MAX_VALUE ? -1 : res;
         return memo[amount];
+    }
+
+
+    public int coinChange3(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, 0x3f3f3f3f);
+        dp[0] = 0;
+        for (int i = 0; i < coins.length; i++) {
+            int x = coins[i];
+            for (int j = x; j <= amount; j++) {
+                dp[j] = Math.min(dp[j], dp[j - x] + 1);
+            }
+        }
+        return dp[amount] == 0x3f3f3f3f ? -1 : dp[amount];
     }
 
 }
