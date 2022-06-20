@@ -54,6 +54,26 @@ public class Code322CoinChange {
         return memo[amount];
     }
 
+    public int coinChange1(int[] coins, int amount) {
+        int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
+        Arrays.fill(dp[0], 0x3f3f3f3f);
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            int x = coins[i - 1];
+            for (int j = 0; j <= amount; j++) {
+                dp[i][j] = dp[i - 1][j];
+                for (int k = 1; k * x <= j; k++) {
+                    if (dp[i - 1][j - k * x] != 0x3f3f3f3f) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - k * x] + k);
+                    }
+                }
+            }
+        }
+        return dp[n][amount] == 0x3f3f3f3f ? -1 : dp[n][amount];
+    }
+
 
     public int coinChange3(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
