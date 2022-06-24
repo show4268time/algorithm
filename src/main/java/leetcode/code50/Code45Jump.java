@@ -1,5 +1,7 @@
 package leetcode.code50;
 
+import java.util.Arrays;
+
 /**
  * @author: PhilipFry
  * @create: 2022-05-28 17:12
@@ -17,7 +19,38 @@ public class Code45Jump {
         return min;
     }
 
-    private void dp(int[] nums, int i, int count) {
+    public int jump1(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, 0x3f3f3f3f);
+        dp[0] = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] >= i - j) {
+                    dp[i] = Math.min(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+
+    public int jump2(int[] nums) {
+        int n = nums.length;
+        int cur = 0, dis = 0,next = 0;
+        int res = 0;
+        while(dis < n -1){
+            next = 0;
+            while(cur <= dis){
+                next = Math.max(next, nums[cur] + cur);
+                cur++;
+            }
+            res++;
+            dis = next;
+        }
+        return res;
+    }
+
+        private void dp(int[] nums, int i, int count) {
         if (i >= nums.length - 1) {
             min = Math.min(min, count);
             return;
