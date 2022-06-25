@@ -28,4 +28,19 @@ public class Code300LengthOfLIS {
         }
         return max;
     }
+
+    public int lengthOfLIS1(int[] nums) {
+        int[] q = new int[nums.length];
+        Arrays.fill(q, Integer.MAX_VALUE);
+        int result = 0;
+        for(int i = 0; i< nums.length; i++){
+            int n = nums[i];
+            int k = nums.length;
+            while(k > 0 && q[k -1] >= n){
+                k--;
+            }
+            result = Math.max(result, k + 1);
+        }
+        return result;
+    }
 }
