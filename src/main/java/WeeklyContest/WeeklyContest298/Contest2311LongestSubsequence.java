@@ -24,7 +24,6 @@ public class Contest2311LongestSubsequence {
      */
     public int longestSubsequence(String s, int k) {
         int n = s.length();
-        String str = "";
         int zero = 0;
         int one = 0;
         for (int i = 0; i < n; i++) {
