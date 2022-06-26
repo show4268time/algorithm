@@ -1,4 +1,4 @@
-package WeeklyContest.WeeklyContest299;
+package weeklyContest.WeeklyContest299;
 
 /**
  * @author: PhilipFry

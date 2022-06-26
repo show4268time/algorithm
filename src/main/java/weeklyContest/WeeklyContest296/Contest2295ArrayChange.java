@@ -1,4 +1,4 @@
-package WeeklyContest.WeeklyContest296;
+package weeklyContest.WeeklyContest296;
 
 import java.util.HashMap;
 import java.util.Map;
