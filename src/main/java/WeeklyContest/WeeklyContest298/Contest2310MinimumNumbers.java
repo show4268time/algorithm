@@ -18,7 +18,7 @@ import java.util.List;
  * 多重集与集合类似，但多重集可以包含多个同一整数，空多重集的和为 0 。
  * 个位数字 是数字最右边的数位。
  */
-public class Contest2410MinimumNumbers {
+public class Contest2310MinimumNumbers {
     public int minimumNumbers(int num, int k) {
         if (num == 0) return 0;
 
