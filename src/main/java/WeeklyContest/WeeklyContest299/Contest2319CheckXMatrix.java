@@ -9,7 +9,7 @@ package WeeklyContest.WeeklyContest299;
  * All other elements are 0.
  * Given a 2D integer array grid of size n x n representing a square matrix, return true if grid is an X-Matrix. Otherwise, return false.
  */
-public class Code2319CheckXMatrix {
+public class Contest2319CheckXMatrix {
     public boolean checkXMatrix(int[][] grid) {
         int n = grid.length;
         int start = 0, end = n - 1;

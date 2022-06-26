@@ -14,7 +14,7 @@ package WeeklyContest.WeeklyContest298;
  * A subsequence is a string that can be derived from another string by deleting some or no characters without changing
  * the order of the remaining characters.
  */
-public class Code2311LongestSubsequence {
+public class Contest2311LongestSubsequence {
     /**
      * 正确解法
      * 从右往左统计1的个数，最后加上所有0的个数，直至大于k或超出int上限

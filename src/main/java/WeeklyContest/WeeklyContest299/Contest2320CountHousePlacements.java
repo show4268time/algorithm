@@ -13,7 +13,7 @@ package WeeklyContest.WeeklyContest299;
  * <p>
  * Note that if a house is placed on the ith plot on one side of the street, a house can also be placed on the ith plot on the other side of the street.
  */
-public class Code2320CountHousePlacements {
+public class Contest2320CountHousePlacements {
     public int countHousePlacements(int n) {
         long[] f = new long[n + 1];
         long[] g = new long[n + 1];
