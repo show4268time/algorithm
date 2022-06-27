@@ -17,9 +17,7 @@ public class Code1689MinPartitions {
         for (int i = 0; i < n.length(); i++) {
             int x = n.charAt(i) - '0';
             res = Math.max(x, res);
-            if (res == 9) {
-                break;
-            }
+            if (res == 9) break;
         }
         return res;
     }
