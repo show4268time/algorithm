@@ -51,4 +51,23 @@ public class Code19RemoveNthFromEnd {
         // p2 现在指向第 n - k 个节点
         return p2;
     }
+
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        ListNode sentinel = new ListNode();
+        sentinel.next = head;
+        ListNode left = sentinel;
+        ListNode right = sentinel;
+        while (right.next != null) {
+            right = right.next;
+            if (n != 0) {
+                n--;
+            } else {
+                left = left.next;
+            }
+        }
+        ListNode temp = left.next;
+        left.next = temp.next;
+        return sentinel.next;
+    }
+
 }
