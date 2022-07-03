@@ -17,8 +17,8 @@ public class Code462MinMoves2 {
         int n = nums.length;
         Arrays.sort(nums);
         int count = 0;
-        int e = nums[n/2];
-        for(int i =0; i< n; i++){
+        int e = nums[n / 2];
+        for (int i = 0; i < n; i++) {
             count += Math.abs(nums[i] - e);
         }
         return count;
