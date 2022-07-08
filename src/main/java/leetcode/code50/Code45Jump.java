@@ -36,11 +36,11 @@ public class Code45Jump {
 
     public int jump2(int[] nums) {
         int n = nums.length;
-        int cur = 0, dis = 0,next = 0;
+        int cur = 0, dis = 0, next = 0;
         int res = 0;
-        while(dis < n -1){
+        while (dis < n - 1) {
             next = 0;
-            while(cur <= dis){
+            while (cur <= dis) {
                 next = Math.max(next, nums[cur] + cur);
                 cur++;
             }
@@ -50,7 +50,7 @@ public class Code45Jump {
         return res;
     }
 
-        private void dp(int[] nums, int i, int count) {
+    private void dp(int[] nums, int i, int count) {
         if (i >= nums.length - 1) {
             min = Math.min(min, count);
             return;
@@ -61,5 +61,28 @@ public class Code45Jump {
         for (int j = 1; j <= nums[i]; j++) {
             dp(nums, i + j, count);
         }
+    }
+
+    public int jump3(int[] nums) {
+        int n = nums.length;
+        if (n == 1) return 0;
+        int dis = 0;
+        int nextDis = 0;
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            nextDis = Math.max(i + nums[i], nextDis);
+            if (i == dis) {
+                if (dis != n - 1) {
+                    dis = nextDis;
+                    res++;
+                    if (dis >= n - 1) {
+                        return res;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        return res;
     }
 }
