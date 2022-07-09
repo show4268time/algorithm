@@ -1,6 +1,8 @@
 package leetcode.code150;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author: PhilipFry
@@ -32,5 +34,22 @@ public class Code128LongestConsecutive {
             left++;
         }
         return max;
+    }
+
+    public int longestConsecutive1(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
+        }
+
+        for (Integer x : set) {
+            if (!set.contains(x - 1)) {
+                int y = x;
+                while (set.contains(y + 1)) y++;
+                res = Math.max(res, y - x + 1);
+            }
+        }
+        return res;
     }
 }
