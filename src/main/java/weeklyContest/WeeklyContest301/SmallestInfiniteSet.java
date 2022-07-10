@@ -29,6 +29,5 @@ public class SmallestInfiniteSet {
         if (set.contains(num)) {
             set.remove(num);
         }
-
     }
 }
