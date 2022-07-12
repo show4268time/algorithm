@@ -1,7 +1,9 @@
 package leetcode.code150;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @author: PhilipFry
@@ -38,6 +40,25 @@ public class Code102LevelOrder {
         list.add(root);
         levelOrder(list);
 
+        return result;
+    }
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root == null) return result;
+        q.offer(root);
+        while (q.size() != 0) {
+            List<Integer> list = new ArrayList<>();
+            int n = q.size();
+            for (int i = 0; i < n; i++) {
+                TreeNode node = q.poll();
+                list.add(node.val);
+                if (node.left != null) q.offer(node.left);
+                if (node.right != null) q.offer(node.right);
+            }
+            result.add(list);
+        }
         return result;
     }
 
