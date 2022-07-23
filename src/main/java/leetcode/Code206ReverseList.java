@@ -24,18 +24,19 @@ public class Code206ReverseList {
     }
 
     public ListNode reverseList(ListNode head) {
-        if(head == null || head.next == null) return head;
+        if (head == null || head.next == null) return head;
 
         ListNode tail = reverseList(head.next);
         head.next.next = head;
         head.next = null;
         return tail;
     }
+
     public ListNode reverseList1(ListNode head) {
-        if(head == null) return null;
+        if (head == null) return null;
 
         ListNode l = head, r = head.next;
-        while (r != null){
+        while (r != null) {
             ListNode n = r.next;
             r.next = l;
             l.next = null;
