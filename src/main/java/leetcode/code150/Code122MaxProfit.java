@@ -13,8 +13,11 @@ package leetcode.code150;
 public class Code122MaxProfit {
     public int maxProfit(int[] prices) {
         int res = 0;
-        for (int i = 0; i + 1 < prices.length; i++) {
-            res = res + Math.max(0, prices[i + 1] - prices[i]);
+        int n = prices.length;
+        for(int i =1; i < n; i++){
+            if(prices[i] - prices[i-1] > 0){
+                res += prices[i] - prices[i-1];
+            }
         }
         return res;
     }
