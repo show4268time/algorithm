@@ -26,13 +26,14 @@ public class Code226InvertTree {
     }
 
     public TreeNode invertTree(TreeNode root) {
-        if (root == null) return null;
-        TreeNode right = invertTree(root.right);
-        TreeNode left = invertTree(root.left);
+        if(root == null) return null;
 
-        root.right = left;
-        root.left = right;
+        TreeNode l = root.left;
 
+        root.left = root.right;
+        root.right = l;
+        invertTree(root.right);
+        invertTree(root.left);
         return root;
     }
 
