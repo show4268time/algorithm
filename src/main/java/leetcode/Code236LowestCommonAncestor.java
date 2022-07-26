@@ -20,7 +20,20 @@ public class Code236LowestCommonAncestor {
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return lowestCommonAncestor(root, p.val, q.val);
+        if (root == null || root == p || root == q) return root;
+
+        TreeNode l = lowestCommonAncestor(root.left, p, q);
+        TreeNode r = lowestCommonAncestor(root.right, p, q);
+
+        if (l != null && r != null) {
+            return root;
+        } else if (l != null) {
+            return l;
+        } else if (r != null) {
+            return r;
+        } else {
+            return null;
+        }
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
