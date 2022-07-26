@@ -22,24 +22,13 @@ public class Code235LowestCommonAncestor {
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return null;
-
-        if (p.val > q.val) {
-            return lowestCommonAncestor(root, q, p);
-        }
-
-        if (p.val <= root.val && q.val >= root.val) {
+        if (p.val == root.val || q.val == root.val) return root;
+        if (p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        } else if (p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        } else {
             return root;
         }
-
-        if (p.val > root.val) {
-            return lowestCommonAncestor(root.right, q, p);
-        }
-
-        if (q.val < root.val) {
-            return lowestCommonAncestor(root.left, q, p);
-        }
-
-        return null;
     }
 }
