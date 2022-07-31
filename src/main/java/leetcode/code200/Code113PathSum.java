@@ -19,37 +19,33 @@ public class Code113PathSum {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
-    private List<List<Integer>> result = new ArrayList<>();
 
-    public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        LinkedList<Integer> backtrack = new LinkedList<>();
-        pathSum(root, sum, backtrack);
-
-        return result;
+        TreeNode(int x) {
+            val = x;
+        }
     }
 
-    public void pathSum(TreeNode node, int sum, LinkedList<Integer> backtrack) {
-        if(node == null) return;
+    List<List<Integer>> res = new ArrayList<>();
 
-        if(node.left == null && node.right == null){
-            if(node.val == sum){
-                backtrack.addLast(node.val);
-                result.add(new ArrayList<>(backtrack));
-                backtrack.removeLast();
-            }else{
-                return;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        LinkedList<Integer> path = new LinkedList<>();
+        dfs(root, targetSum, path);
+        return res;
+
+    }
+
+    private void dfs(TreeNode node, int t, LinkedList<Integer> path) {
+        if (node == null) return;
+
+        t -= node.val;
+        path.add(node.val);
+        if (node.left == null && node.right == null) {
+            if (t == 0) {
+                res.add(new ArrayList<>(path));
             }
         }
-
-        backtrack.addLast(node.val);
-        pathSum(node.left, sum - node.val, backtrack);
-        backtrack.removeLast();
-
-        backtrack.addLast(node.val);
-        pathSum(node.right, sum - node.val, backtrack);
-        backtrack.removeLast();
-
+        dfs(node.left, t, path);
+        dfs(node.right, t, path);
+        path.removeLast();
     }
 }
