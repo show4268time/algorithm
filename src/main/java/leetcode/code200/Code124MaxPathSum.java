@@ -29,39 +29,20 @@ public class Code124MaxPathSum {
         }
     }
 
-    public static void main(String[] args) {
-        String s = "1";
-    }
-
-    private int maxSum = Integer.MIN_VALUE;
+    int res = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
-        // base case
-        if (root == null) return 0;
-
-        max(root);
-
-        return maxSum;
+        dfs(root);
+        return res;
     }
 
-    public int max(TreeNode root) {
-        // base case
-        if (root == null) return 0;
-        String s;
+    private int dfs(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, dfs(node.left));
+        int right = Math.max(0, dfs(node.right));
 
-        // recursing through left and right subtree
-        int leftMax = max(root.left);
-        int rightMax = max(root.right);
+        res = Math.max(res, node.val + left + right);
 
-        // finding all the four paths and the maximum between all of them
-        int maxRightLeft = Math.max(leftMax, rightMax);
-        int maxOneNodeRoot = Math.max(root.val, (root.val + maxRightLeft));
-        int maxAll = Math.max(maxOneNodeRoot, leftMax + rightMax + root.val);
-
-        // Storing the result in the maxSum holder
-        maxSum = Math.max(maxSum, maxAll);
-
-        // returning the value if root was part of the answer
-        return maxOneNodeRoot;
+        return node.val + Math.max(left, right);
     }
 }
