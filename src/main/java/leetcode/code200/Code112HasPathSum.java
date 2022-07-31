@@ -17,16 +17,14 @@ public class Code112HasPathSum {
         }
     }
 
-    public boolean hasPathSum(TreeNode root, int sum) {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) return false;
 
+        targetSum -= root.val;
         if (root.left == null && root.right == null) {
-            return root.val == sum;
+            return targetSum == 0;
         }
 
-        int target = sum - root.val;
-
-        return hasPathSum(root.left, target) || hasPathSum(root.right, target);
-
+        return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
     }
 }
