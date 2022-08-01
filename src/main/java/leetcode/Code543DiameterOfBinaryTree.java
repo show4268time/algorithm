@@ -28,20 +28,18 @@ public class Code543DiameterOfBinaryTree {
         }
     }
 
-    private Integer maxDiameter = Integer.MIN_VALUE;
+    int res = 0;
 
     public int diameterOfBinaryTree(TreeNode root) {
-        maxDe(root);
-
-        return maxDiameter;
+        if (root == null) return 0;
+        dfs(root);
+        return res;
     }
 
-    private int maxDe(TreeNode root) {
-        if (root == null) return 0;
-        int left = maxDe(root.left);
-        int right = maxDe(root.right);
-        int myDiameter = left + right;
-        maxDiameter = Math.max(myDiameter, maxDiameter);
-        return Math.max(left, right) + 1;
+    private int dfs(TreeNode node) {
+        int left = node.left == null ? 0 : dfs(node.left) + 1;
+        int right = node.right == null ? 0 : dfs(node.right) + 1;
+        res = Math.max(res, left + right);
+        return Math.max(left, right);
     }
 }
