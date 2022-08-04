@@ -19,7 +19,7 @@ package Interview;
  * s[i]仅包含小写字母
  * 如果你不使用额外的数据结构，会很加分。
  */
-public class Interview001IsUnique {
+public class Interview0101IsUnique {
     public boolean isUnique(String astr) {
         int n = astr.length();
         int[] array = new int[256];
