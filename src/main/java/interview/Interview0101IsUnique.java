@@ -1,4 +1,4 @@
-package Interview;
+package interview;
 
 /**
  * @author: PhilipFry
