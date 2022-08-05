@@ -46,4 +46,15 @@ public class Code206ReverseList {
 
         return l;
     }
+
+    public ListNode reverseList2(ListNode head) {
+        ListNode pre = null, cur = head;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
 }
