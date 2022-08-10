@@ -27,4 +27,19 @@ public class Code74SearchMatrix {
         }
         return res;
     }
+
+    public boolean searchMatrix1(int[][] matrix, int target) {
+        int n = matrix.length, m = matrix[0].length;
+        int l = 0, r = m * n -1;
+        while(l < r){
+            int mid = l + r >> 1;
+            if(matrix[mid / m][mid % m] >= target) {
+                r = mid;
+            }else {
+                l = mid + 1;
+            }
+        }
+
+        return matrix[r / m][r % m] == target;
+    }
 }
