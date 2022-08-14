@@ -12,37 +12,36 @@ import java.util.List;
  */
 public class Code15ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
-        int n = nums.length;
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null) return res;
+        if (nums.length < 3) return res;
 
         Arrays.sort(nums);
-        //确定第一个数
-        for (int i = 0; i < n; i++) {
-            if (i != 0 && nums[i] == nums[i - 1]) continue;
-            int l = i + 1, r = n - 1;
 
-            while (l < r) {
-                int sum = nums[i] + nums[l] + nums[r];
-                if (sum > 0) {
-                    r--;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i - 1] == nums[i]) continue;
+            int left = i + 1, right = nums.length - 1;
+            while (left < right) {
+                int t = nums[left] + nums[right] + nums[i];
+
+                if (t > 0) {
+                    right--;
                     continue;
                 }
-                if (sum < 0) {
-                    l++;
+                if (t < 0) {
+                    left++;
                     continue;
                 }
-                //sum == 0时
-                ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
-                //去除重复处理
+
+                res.add(Arrays.asList(nums[i], nums[left], nums[right]));
                 do {
-                    l++;
-                } while (l < r && nums[l] == nums[l - 1]);
+                    left++;
+                } while (left < right && nums[left - 1] == nums[left]);
                 do {
-                    r--;
-                } while (l < r && nums[r] == nums[r + 1]);
+                    right--;
+                } while (left < right && nums[right + 1] == nums[right]);
             }
-
         }
-        return ans;
+        return res;
     }
 }
