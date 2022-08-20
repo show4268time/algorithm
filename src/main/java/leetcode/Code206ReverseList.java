@@ -3,7 +3,13 @@ package leetcode;
 /**
  * @author: PhilipFry
  * @create: 2022-07-23 17:48
- * @Description: 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+ * @Description: Given the head of a singly linked list, reverse the list, and return the reversed list.
+ * Input: head = [1,2,3,4,5]
+ * Output: [5,4,3,2,1]
+ *
+ *
+ * Input: head = [1,2]
+ * Output: [2,1]
  */
 public class Code206ReverseList {
     public class ListNode {
