@@ -11,56 +11,54 @@ import java.util.*;
  */
 public class Code49GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> res = new ArrayList<>();
         int n = strs.length;
         boolean[] used = new boolean[n];
-        List<List<String>> result = new ArrayList<>();
+
         for (int i = 0; i < n; i++) {
             if (used[i]) continue;
-
             List<String> list = new ArrayList<>();
-            used[i] = true;
             list.add(strs[i]);
-            int k = strs[i].length();
-            String str = strs[i];
-            int[] array = new int[128];
-            for (int w = 0; w < k; w++) {
-                array[str.charAt(w)]++;
-            }
-            for (int j = 0; j < n; j++) {
+            used[i] = true;
+
+            for (int j = i + 1; j < n; j++) {
                 if (used[j]) continue;
-                if (strs[j].length() == k) {
-                    if (check(array, strs[j])) {
-                        list.add(strs[j]);
-                        used[j] = true;
-                    }
+                if (check(strs[i], strs[j])) {
+                    list.add(strs[j]);
+                    used[j] = true;
                 }
             }
-            result.add(list);
+            res.add(list);
         }
-        return result;
+        return res;
     }
 
-    private boolean check(int[] array, String str) {
-        int n = str.length();
-        int[] other = new int[128];
-        for (int i = 0; i < n; i++) {
-            other[str.charAt(i)]++;
+    private boolean check(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] a = new int[26];
+        int[] b = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            a[s.charAt(i) - 'a']++;
         }
 
-        for (int i = 0; i < n; i++) {
-            if (other[str.charAt(i)] != array[str.charAt(i)]) return false;
+        for (int i = 0; i < t.length(); i++) {
+            b[t.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (a[i] != b[i]) return false;
         }
         return true;
     }
 
     public List<List<String>> groupAnagrams1(String[] strs) {
         //判断是否为空字符串数组
-        if(strs == null || strs.length == 0){
+        if (strs == null || strs.length == 0) {
             return new ArrayList();
         }
         //1.创建一个哈希表
-        Map<String,List> map = new HashMap<String, List>();
-        for (String s: strs) {
+        Map<String, List> map = new HashMap<String, List>();
+        for (String s : strs) {
             //将字符串转化为字符数组
             char[] chars = s.toCharArray();
             //对字符数组按照字母顺序排序
@@ -68,9 +66,9 @@ public class Code49GroupAnagrams {
             //将排序后的字符串作为哈希表中的key值
             String key = String.valueOf(chars);
             //2.判读哈希表中是否有该key值
-            if (!map.containsKey(key)){
+            if (!map.containsKey(key)) {
                 //若不存在，则为新的异位词语，在map中创建新的键值对
-                map.put(key,new ArrayList());
+                map.put(key, new ArrayList());
             }
             //3.将该字符串放在对应key的list中
             map.get(key).add(s);
