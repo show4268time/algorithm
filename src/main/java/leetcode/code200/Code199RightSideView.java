@@ -3,13 +3,30 @@ package leetcode.code200;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @author: PhilipFry
  * @create: 2022-05-21 09:43
- * @Description: Given the root of a binary tree,
- * imagine yourself standing on the right side of it,
+ * @Description: Given the root of a binary tree, imagine yourself standing on the right side of it,
  * return the values of the nodes you can see ordered from top to bottom.
+ *
+ *
+ *
+ * Example 1:
+ *
+ *
+ * Input: root = [1,2,3,null,5,null,4]
+ * Output: [1,3,4]
+ * Example 2:
+ *
+ * Input: root = [1,null,3]
+ * Output: [1,3]
+ * Example 3:
+ *
+ * Input: root = []
+ * Output: []
+ *
  */
 public class Code199RightSideView {
     public class TreeNode {
@@ -34,29 +51,22 @@ public class Code199RightSideView {
     private List<Integer> result = new ArrayList<>();
 
     public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
         if (root == null) return result;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while (q.size() > 0) {
+            int l = q.size();
+            int n = 0;
+            for (int i = 0; i < l; i++) {
+                TreeNode node = q.poll();
 
-        LinkedList<TreeNode> backtrack = new LinkedList<>();
-        backtrack.offer(root);
-
-        rightSideView(backtrack);
-
-        return result;
-    }
-
-    public void rightSideView(LinkedList<TreeNode> backtrack) {
-        if (backtrack.isEmpty()) return;
-        int size = backtrack.size();
-        LinkedList<TreeNode> nextLevel = new LinkedList<>();
-        for (int i = 0; i < size; i++) {
-            TreeNode cur = backtrack.poll();
-            if (i == 0) {
-                result.add(cur.val);
+                n = node.val;
+                if (node.left != null) q.offer(node.left);
+                if (node.right != null) q.offer(node.right);
             }
-            if (cur.right != null) nextLevel.offer(cur.right);
-            if (cur.left != null) nextLevel.offer(cur.left);
-
+            result.add(n);
         }
-        rightSideView(nextLevel);
+        return result;
     }
 }
