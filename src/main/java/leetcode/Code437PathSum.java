@@ -31,24 +31,26 @@ public class Code437PathSum {
         }
     }
 
-    Map<Long, Long> map = new HashMap<>();
-    Long res = 0l;
-    long t = 0;
+    int res = 0;
+    Map<Long, Integer> map = new HashMap<>();
+    int t = 0;
 
     public int pathSum(TreeNode root, int targetSum) {
-        t = (long) targetSum;
-        map.put(0l, 1l);
+        map.put(0l, 1);
+        t = targetSum;
         dfs(root, 0l);
-        return res.intValue();
+        return res;
     }
 
-    void dfs(TreeNode node, long cur) {
+    private void dfs(TreeNode node, long sum) {
         if (node == null) return;
-        cur = cur + (long) node.val;
-        res += map.getOrDefault(cur - t, 0l);
-        map.put(cur, map.getOrDefault(cur, 0l) + 1l);
-        dfs(node.left, cur);
-        dfs(node.right, cur);
-        map.put(cur, map.getOrDefault(cur, 0l) - 1l);
+
+        sum += node.val;
+        long d = sum - t;
+        res += map.getOrDefault(d, 0);
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
+        dfs(node.left, sum);
+        dfs(node.right, sum);
+        map.put(sum, map.getOrDefault(sum, 0) - 1);
     }
 }
