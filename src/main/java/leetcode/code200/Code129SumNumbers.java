@@ -32,18 +32,16 @@ public class Code129SumNumbers {
     }
 
     public int sumNumbers(TreeNode root) {
-
-        return sumNumbers(root, 0);
+        return dfs(root, 0);
     }
 
-    public int sumNumbers(TreeNode root, int n) {
-        if (root == null) {
+    private int dfs(TreeNode node, int pre) {
+        if (node == null) return 0;
 
-            return 0;
-        }
+        pre = pre * 10 + node.val;
 
-        if (root.left == null && root.right == null) return n * 10 + root.val;
+        if (node.left == null && node.right == null) return pre;
 
-        return sumNumbers(root.left, n * 10 + root.val) + sumNumbers(root.right, n * 10 + root.val);
+        return dfs(node.left, pre) + dfs(node.right, pre);
     }
 }
