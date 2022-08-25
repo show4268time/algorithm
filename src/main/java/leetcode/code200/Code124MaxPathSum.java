@@ -38,11 +38,12 @@ public class Code124MaxPathSum {
 
     private int dfs(TreeNode node) {
         if (node == null) return 0;
-        int left = Math.max(0, dfs(node.left));
-        int right = Math.max(0, dfs(node.right));
 
-        res = Math.max(res, node.val + left + right);
+        int l = Math.max(0, dfs(node.left));
+        int r = Math.max(0, dfs(node.right));
+        int v = node.val;
+        res = Math.max(res, v + l + r);
 
-        return node.val + Math.max(left, right);
+        return v + Math.max(l, r);
     }
 }
