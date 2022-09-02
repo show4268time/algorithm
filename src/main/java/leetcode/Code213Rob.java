@@ -1,7 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
-
 /**
  * @author: PhilipFry
  * @create: 2022-06-25 17:38
@@ -19,21 +17,20 @@ public class Code213Rob {
         if (n == 1) return nums[0];
         int[] f = new int[n + 1];
         int[] g = new int[n + 1];
-        int res = 0;
         for (int i = 1; i < n; i++) {
             f[i] = g[i - 1] + nums[i - 1];
-            g[i] = Math.max(f[i - 1], g[i - 1]);
+            g[i] = Math.max(g[i - 1], f[i - 1]);
         }
-        res = Math.max(f[n - 1], g[n - 1]);
 
-        Arrays.fill(f, 0);
-        Arrays.fill(g, 0);
+        int max = Math.max(f[n - 1], g[n - 1]);
+        f = new int[n + 1];
+        g = new int[n + 1];
         for (int i = 2; i <= n; i++) {
             f[i] = g[i - 1] + nums[i - 1];
-            g[i] = Math.max(f[i - 1], g[i - 1]);
+            g[i] = Math.max(g[i - 1], f[i - 1]);
         }
-        res = Math.max(res, f[n]);
-        res = Math.max(res, g[n]);
-        return res;
+
+        max = Math.max(max, (Math.max(f[n], g[n])));
+        return max;
     }
 }
