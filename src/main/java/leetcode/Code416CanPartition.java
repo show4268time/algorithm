@@ -49,4 +49,22 @@ public class Code416CanPartition {
         }
         return dp[sum];
     }
+
+    public boolean canPartition3(int[] nums) {
+        int sum = 0;
+        int n = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if (sum % 2 == 1) return false;
+        sum /= 2;
+        int[] dp = new int[sum + 1];
+        for (int i = 1; i <= n; i++) {
+            int x = nums[i - 1];
+            for (int j = sum; j >= x; j--) {
+                dp[j] = Math.max(dp[j], dp[j - x] + x);
+            }
+        }
+        return dp[sum] == sum;
+    }
 }
