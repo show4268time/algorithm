@@ -5,9 +5,14 @@ import java.util.Arrays;
 /**
  * @author: PhilipFry
  * @create: 2022-05-10 19:57
- * @Description: You are given an integer array coins representing coins of different denominations and
- * an integer amount representing a total amount of money.  Return the fewest number of coins that you need to make up that amount.
+ * @Description: You are given an integer array coins representing coins of different denominations
+ * <p>
+ * and an integer amount representing a total amount of money.
+ * <p>
+ * Return the fewest number of coins that you need to make up that amount.
+ * <p>
  * If that amount of money cannot be made up by any combination of the coins, return -1.
+ * <p>
  * You may assume that you have an infinite number of each kind of coin.
  */
 public class Code322CoinChange {
