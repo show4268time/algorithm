@@ -1,4 +1,4 @@
-package offer.ⅠI;
+package offer.special;
 
 /**
  * @author: PhilipFry
