@@ -32,28 +32,28 @@ public class Code21MergeTwoLists {
     }
 
     public ListNode mergeTwoLists1(ListNode list1, ListNode list2) {
-        if(list1 == null && list2 == null){
+        if (list1 == null && list2 == null) {
             return null;
         }
 
-        if(list1 == null || list2 == null){
+        if (list1 == null || list2 == null) {
             return list1 == null ? list2 : list1;
         }
 
         ListNode sentinel = new ListNode();
         ListNode cur = sentinel;
-        while(list1 != null || list2 != null){
-            if(list1 == null){
+        while (list1 != null || list2 != null) {
+            if (list1 == null) {
                 cur.next = list2;
                 break;
-            }else if(list2 == null){
+            } else if (list2 == null) {
                 cur.next = list1;
                 break;
-            }else{
-                if(list1.val <= list2.val){
+            } else {
+                if (list1.val <= list2.val) {
                     cur.next = new ListNode(list1.val);
                     list1 = list1.next;
-                }else{
+                } else {
                     cur.next = new ListNode(list2.val);
                     list2 = list2.next;
                 }
@@ -79,6 +79,29 @@ public class Code21MergeTwoLists {
                 mergeTwoLists(list1.next, list2, cur.next);
             }
         }
+    }
 
+    public ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
+        ListNode res = new ListNode();
+        ListNode cur = res;
+        while (list1 != null || list2 != null) {
+            if (list1 != null && list2 != null) {
+                if (list1.val > list2.val) {
+                    cur.next = list2;
+                    list2 = list2.next;
+                } else {
+                    cur.next = list1;
+                    list1 = list1.next;
+                }
+            } else if (list1 != null) {
+                cur.next = list1;
+                list1 = list1.next;
+            } else {
+                cur.next = list2;
+                list2 = list2.next;
+            }
+            cur = cur.next;
+        }
+        return res.next;
     }
 }
