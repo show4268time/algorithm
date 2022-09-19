@@ -17,11 +17,11 @@ public class Code160GetIntersectionNode {
     }
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode q = headA, p = headB;
-        while (p != q) {
-            q = (q == null) ? headB : q.next;
-            p = (p == null) ? headA : p.next;
+        ListNode a = headA, b = headB;
+        while(a != b){
+            a = a == null ? headB : a.next;
+            b = b == null ? headA : b.next;
         }
-        return q;
+        return a;
     }
 }
