@@ -5,8 +5,24 @@ import java.util.Stack;
 /**
  * @author: PhilipFry
  * @create: 2022-07-21 23:26
- * @Description: 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，
- * 下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。
+ * @Description: Given an array of integers temperatures represents the daily temperatures,
+ * <p>
+ * return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature.
+ * <p>
+ * If there is no future day for which this is possible, keep answer[i] == 0 instead.
+ * <p>
+ * Example 1:
+ * <p>
+ * Input: temperatures = [73,74,75,71,69,72,76,73]
+ * Output: [1,1,4,2,1,1,0,0]
+ * Example 2:
+ * <p>
+ * Input: temperatures = [30,40,50,60]
+ * Output: [1,1,1,0]
+ * Example 3:
+ * <p>
+ * Input: temperatures = [30,60,90]
+ * Output: [1,1,0]
  */
 public class Code739DailyTemperatures {
     public int[] dailyTemperatures(int[] temperatures) {
@@ -14,10 +30,8 @@ public class Code739DailyTemperatures {
         int n = temperatures.length;
         int[] res = new int[n];
         for (int i = n - 1; i >= 0; i--) {
-            while (!stack.isEmpty() && temperatures[stack.peek()] <= temperatures[i]) stack.pop();
-            if (!stack.isEmpty()) {
-                res[i] = stack.peek() - i;
-            }
+            while (stack.size() > 0 && temperatures[i] >= temperatures[stack.peek()]) stack.pop();
+            if (stack.size() > 0) res[i] = stack.peek() - i;
             stack.push(i);
         }
         return res;
