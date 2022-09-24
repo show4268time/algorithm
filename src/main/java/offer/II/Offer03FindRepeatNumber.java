@@ -28,4 +28,16 @@ public class Offer03FindRepeatNumber {
         }
         return -1;
     }
+
+    public int findRepeatNumber1(int[] nums) {
+        for(int i = 0; i < nums.length; i++){
+            while(nums[i] != i){
+                int temp = nums[nums[i]];
+                if(temp == nums[i]) return nums[i];
+                nums[nums[i]] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        return 0;
+    }
 }
