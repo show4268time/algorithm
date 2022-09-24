@@ -1,7 +1,5 @@
 package offer.II;
 
-import java.util.Stack;
-
 /**
  * @author: PhilipFry
  * @create: 2022-08-09 23:42
@@ -17,44 +15,28 @@ public class Offer06ReversePrint {
         }
     }
 
-    int n = 0;
+    int l = 0;
 
     public int[] reversePrint(ListNode head) {
-        if(head == null) return new int[0];
-        Stack<Integer> st = new Stack<>();
-        ListNode temp = head;
-        while(temp != null){
-            st.push(temp.val);
-            temp = temp.next;
-        }
-        int n = st.size();
-        int[] res = new int[n];
-        for(int i = 0; i < n; i++){
-            res[i] = st.pop();
-        }
-        return res;
-    }
-
-
-    public int[] reversePrint1(ListNode head) {
-        if(head == null) return new int[0];
-        ListNode node = back(head);
-        int[] res = new int[n];
-        for(int i = 0; i< n; i++){
+        ListNode node = reverse(head);
+        int[] res = new int[l];
+        int i = 0;
+        while (node != null) {
             res[i] = node.val;
             node = node.next;
+            i++;
         }
         return res;
     }
 
-    private ListNode back(ListNode node){
+    private ListNode reverse(ListNode node) {
         ListNode pre = null;
-        while(node != null){
+        while (node != null) {
             ListNode temp = node.next;
             node.next = pre;
             pre = node;
             node = temp;
-            n++;
+            l++;
         }
         return pre;
     }
