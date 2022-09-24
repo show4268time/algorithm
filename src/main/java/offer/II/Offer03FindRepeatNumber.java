@@ -16,24 +16,24 @@ public class Offer03FindRepeatNumber {
     public int findRepeatNumber(int[] nums) {
         int n = nums.length;
         int i = 0;
-        while(i < n){
-            if(nums[i] == i){
+        while (i < n) {
+            if (nums[i] == i) {
                 i++;
                 continue;
             }
-            if(nums[i] == nums[nums[i]]) return nums[i];
+            if (nums[i] == nums[nums[i]]) return nums[i];
             int temp = nums[i];
-            nums[i] =  nums[temp];
+            nums[i] = nums[temp];
             nums[temp] = temp;
         }
         return -1;
     }
 
     public int findRepeatNumber1(int[] nums) {
-        for(int i = 0; i < nums.length; i++){
-            while(nums[i] != i){
+        for (int i = 0; i < nums.length; i++) {
+            while (nums[i] != i) {
                 int temp = nums[nums[i]];
-                if(temp == nums[i]) return nums[i];
+                if (temp == nums[i]) return nums[i];
                 nums[nums[i]] = nums[i];
                 nums[i] = temp;
             }
