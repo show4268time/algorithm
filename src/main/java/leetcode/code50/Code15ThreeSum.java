@@ -13,33 +13,30 @@ import java.util.List;
 public class Code15ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        if (nums == null) return res;
-        if (nums.length < 3) return res;
 
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i - 1] == nums[i]) continue;
-            int left = i + 1, right = nums.length - 1;
-            while (left < right) {
-                int t = nums[left] + nums[right] + nums[i];
-
-                if (t > 0) {
-                    right--;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int l = i + 1, r = nums.length - 1;
+            while (l < r) {
+                int m = nums[i] + nums[l] + nums[r];
+                if (m > 0) {
+                    r--;
                     continue;
-                }
-                if (t < 0) {
-                    left++;
+                } else if (m < 0) {
+                    l++;
                     continue;
-                }
+                } else {
+                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    do {
+                        l++;
+                    } while (l < r && nums[l - 1] == nums[l]);
 
-                res.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                do {
-                    left++;
-                } while (left < right && nums[left - 1] == nums[left]);
-                do {
-                    right--;
-                } while (left < right && nums[right + 1] == nums[right]);
+                    do {
+                        r--;
+                    } while (l < r && nums[r + 1] == nums[r]);
+                }
             }
         }
         return res;
