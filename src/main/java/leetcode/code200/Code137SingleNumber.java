@@ -22,20 +22,16 @@ package leetcode.code200;
  */
 public class Code137SingleNumber {
     public int singleNumber(int[] nums) {
-        int n = nums.length;
-        int[] con = new int[32];
-        int res = 0;
-        for (int i = 0; i < n; i++) {
-            int m = nums[i];
+        int[] dic = new int[32];
+        for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < 32; j++) {
-                if (((m >> j) & 1) == 1) {
-                    con[j]++;
-                }
+                dic[j] += (nums[i] >> j) & 1;
             }
         }
 
+        int res = 0;
         for (int i = 0; i < 32; i++) {
-            if (con[i] % 3 != 0) {
+            if (dic[i] % 3 > 0) {
                 res += 1 << i;
             }
         }
