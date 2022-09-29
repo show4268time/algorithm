@@ -36,4 +36,24 @@ public class Code3LengthOfLongestSubstring {
         }
         return res;
     }
+
+    public int lengthOfLongestSubstring1(String s) {
+        int res = 0;
+        int n = s.length();
+        int l = 0,r = 0;
+        int[] dic = new int[128];
+        while(r < n){
+            char c = s.charAt(r);
+            while(dic[c] > 0){
+                dic[s.charAt(l++)]--;
+            }
+            dic[c]++;
+            if(r < n){
+                res = Math.max(res,r - l + 1 ) ;
+            }
+            r++;
+
+        }
+        return res;
+    }
 }
