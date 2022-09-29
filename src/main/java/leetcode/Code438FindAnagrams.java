@@ -27,34 +27,35 @@ import java.util.List;
  * The substring with start index = 2 is "ab", which is an anagram of "ab".
  */
 public class Code438FindAnagrams {
-    public List<Integer> findAnagrams(String p, String s) {
-        int n = s.length();
-        int m = p.length();
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        if (s.length() < p.length()) return result;
 
-        List<Integer> res = new ArrayList<>();
-        if (n > m) return res;
-        char[] c = s.toCharArray();
-        int[] dic = new int[26];
-        for (int i = 0; i < c.length; i++) {
-            dic[c[i] - 'a']++;
+        int[] dic1 = new int[26];
+        int[] dic2 = new int[26];
+
+        for (int i = 0; i < p.length(); i++) {
+            dic1[s.charAt(i) - 'a']++;
         }
-        int[] cur = new int[26];
-        char[] chars = p.toCharArray();
-        for (int i = 0; i < n; i++) {
-            cur[chars[i] - 'a']++;
+
+        for (int i = 0; i < p.length(); i++) {
+            dic2[p.charAt(i) - 'a']++;
         }
-        if (check(dic, cur)) res.add(0);
-        for (int i = n; i < m; i++) {
-            cur[chars[i] - 'a']++;
-            cur[chars[i - n] - 'a']--;
-            if (check(dic, cur)) res.add(i - n + 1);
+
+        if (check(dic1, dic2))  result.add(0);
+
+        int l = 0, r = p.length();
+        while (r < s.length()) {
+            dic1[s.charAt(l++) - 'a']--;
+            dic1[s.charAt(r++) - 'a']++;
+            if (check(dic1, dic2)) result.add(l);
         }
-        return res;
+        return result;
     }
 
-    private boolean check(int[] a, int[] b) {
+    private boolean check(int[] dic1, int[] dic2) {
         for (int i = 0; i < 26; i++) {
-            if (a[i] != b[i]) return false;
+            if (dic2[i] != dic1[i]) return false;
         }
         return true;
     }
