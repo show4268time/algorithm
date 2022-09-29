@@ -20,32 +20,36 @@ package leetcode;
  * Output: false
  */
 public class Code567CheckInclusion {
-    int[] dic = new int[26];
-
     public boolean checkInclusion(String s1, String s2) {
-        if (s2.length() < s1.length()) return false;
+        if (s1.length() > s2.length()) return false;
 
-        char[] chars = s1.toCharArray();
+        int[] dic1 = new int[26];
+        int[] dic2 = new int[26];
+
         for (int i = 0; i < s1.length(); i++) {
-            dic[chars[i] - 'a']++;
+            dic1[s1.charAt(i) - 'a']++;
         }
 
-        for (int i = 0, j = s1.length(); j <= s2.length(); j++, i++) {
-            String s = s2.substring(i, j);
-            if (check(s)) return true;
+        for (int i = 0; i < s1.length(); i++) {
+            dic2[s2.charAt(i) - 'a']++;
+        }
+
+        if (check(dic1, dic2)) return true;
+
+        int l = 0, r = s1.length();
+        while (r < s2.length()) {
+            dic2[s2.charAt(l++) - 'a']--;
+            dic2[s2.charAt(r++) - 'a']++;
+            if (check(dic1, dic2)) return true;
         }
         return false;
+
     }
 
-    private boolean check(String s) {
-        char[] chars = s.toCharArray();
-        int[] con = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            con[chars[i] - 'a']++;
-        }
 
+    private boolean check(int[] dic1, int[] dic2) {
         for (int i = 0; i < 26; i++) {
-            if (dic[i] != con[i]) return false;
+            if (dic2[i] != dic1[i]) return false;
         }
         return true;
     }
