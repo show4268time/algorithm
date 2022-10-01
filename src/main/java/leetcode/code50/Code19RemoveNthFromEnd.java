@@ -53,21 +53,19 @@ public class Code19RemoveNthFromEnd {
     }
 
     public ListNode removeNthFromEnd1(ListNode head, int n) {
-        ListNode sentinel = new ListNode();
-        sentinel.next = head;
-        ListNode left = sentinel;
-        ListNode right = sentinel;
+        ListNode s = new ListNode();
+        s.next = head;
+        ListNode left = s;
+        ListNode right = s;
+
         while (right.next != null) {
             right = right.next;
-            if (n != 0) {
-                n--;
-            } else {
-                left = left.next;
-            }
+            if (n == 0) left = left.next;
+            else n--;
         }
-        ListNode temp = left.next;
-        left.next = temp.next;
-        return sentinel.next;
+
+        left.next = left.next.next;
+        return s.next;
     }
 
 }
