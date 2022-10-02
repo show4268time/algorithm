@@ -40,7 +40,6 @@ public class Code206ReverseList {
 
     public ListNode reverseList1(ListNode head) {
         if (head == null) return null;
-
         ListNode l = head, r = head.next;
         while (r != null) {
             ListNode n = r.next;
@@ -49,7 +48,6 @@ public class Code206ReverseList {
             l = r;
             r = n;
         }
-
         return l;
     }
 
