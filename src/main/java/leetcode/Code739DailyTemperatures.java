@@ -27,9 +27,8 @@ import java.util.Stack;
 public class Code739DailyTemperatures {
     public int[] dailyTemperatures(int[] temperatures) {
         Stack<Integer> stack = new Stack<>();
-        int n = temperatures.length;
-        int[] res = new int[n];
-        for (int i = n - 1; i >= 0; i--) {
+        int[] res = new int[temperatures.length];
+        for (int i = temperatures.length - 1; i >= 0; i--) {
             while (stack.size() > 0 && temperatures[i] >= temperatures[stack.peek()]) stack.pop();
             if (stack.size() > 0) res[i] = stack.peek() - i;
             stack.push(i);
