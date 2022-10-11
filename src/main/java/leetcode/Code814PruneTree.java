@@ -7,8 +7,6 @@ package leetcode;
  * <p>
  * A subtree of a node node is node plus every node that is a descendant of node.
  * <p>
- * <p>
- * <p>
  * Example 1:
  * <p>
  * <p>
