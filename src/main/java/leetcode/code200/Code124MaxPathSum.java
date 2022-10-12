@@ -29,21 +29,23 @@ public class Code124MaxPathSum {
         }
     }
 
-    int res = Integer.MIN_VALUE;
+    int max = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
+        if (root == null) return 0;
         dfs(root);
-        return res;
+        return max;
     }
+
 
     private int dfs(TreeNode node) {
         if (node == null) return 0;
 
         int l = Math.max(0, dfs(node.left));
         int r = Math.max(0, dfs(node.right));
-        int v = node.val;
-        res = Math.max(res, v + l + r);
 
-        return v + Math.max(l, r);
+        max = Math.max(max, node.val + l + r);
+
+        return Math.max(node.val + l, node.val + r);
     }
 }
