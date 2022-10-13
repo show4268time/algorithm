@@ -2,6 +2,7 @@ package leetcode.code100;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author: PhilipFry
@@ -38,5 +39,22 @@ public class Code94InorderTraversal {
 
         if (root.right != null) inorderTraversal(root.right);
         return result;
+    }
+
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (cur != null || stack.size() > 0) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+
+            TreeNode node = stack.pop();
+            res.add(node.val);
+            cur = node.right;
+        }
+        return res;
     }
 }
