@@ -30,7 +30,7 @@ package leetcode;
  */
 public class Code852PeakIndexInMountainArray {
     public int peakIndexInMountainArray(int[] arr) {
-        int l = 1, r = arr.length - 2;
+        int l = 1, r = arr.length - 1;
         while (l < r) {
             int mid = l + r + 1 >> 1;
             if (arr[mid] > arr[mid - 1]) l = mid;
