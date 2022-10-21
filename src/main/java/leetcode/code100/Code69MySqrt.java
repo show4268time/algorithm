@@ -21,8 +21,7 @@ package leetcode.code100;
  */
 public class Code69MySqrt {
     public int mySqrt(int x) {
-        long n = x;
-        long l = 0l, r = n;
+        long l = 0l, r = x;
         while (l < r) {
             long mid = l + r + 1 >> 1;
             if (mid * mid <= x) l = mid;
