@@ -25,32 +25,24 @@ import java.util.List;
  * Output: [[1]]
  */
 public class Code46Permutations {
-    List<List<Integer>> result = new ArrayList<>();
-    LinkedList<Integer> track = new LinkedList<>();
-
-    boolean[] used;
+    List<List<Integer>> res = new ArrayList<>();
 
     public List<List<Integer>> permute(int[] nums) {
-        used = new boolean[nums.length];
-        backtrack(nums);
-
-        return result;
+        dfs(nums, new LinkedList<>());
+        return res;
     }
 
-    public void backtrack(int[] nums) {
-        if (track.size() == nums.length) {
-            result.add(new LinkedList<>(track));
+    private void dfs(int[] nums, LinkedList<Integer> path) {
+        if (path.size() == nums.length) {
+            res.add(new ArrayList<>(path));
+            return;
         }
 
         for (int i = 0; i < nums.length; i++) {
-            if (used[i]) {
-                continue;
-            }
-            used[i] = Boolean.TRUE;
-            track.add(nums[i]);
-            backtrack(nums);
-            track.removeLast();
-            used[i] = Boolean.FALSE;
+            if (path.contains(nums[i])) continue;
+            path.add(nums[i]);
+            dfs(nums, path);
+            path.removeLast();
         }
     }
 }
