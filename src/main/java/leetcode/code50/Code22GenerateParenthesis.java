@@ -9,26 +9,32 @@ import java.util.List;
  * @Description: Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
  */
 public class Code22GenerateParenthesis {
-    private List<String> res = new ArrayList<>();
+    int left = 0;
+    int right = 0;
+    List<String> res = new ArrayList<>();
 
     public List<String> generateParenthesis(int n) {
-        dfs(0, 0, "", n);
+        left = n;
+        right = n;
+        dfs("", n);
         return res;
     }
 
-    private void dfs(int leftCount, int rightCount, String pre, int n) {
-        if (leftCount == n && rightCount == n) {
+    private void dfs(String pre, int n) {
+        if (right == 0 && left == 0) {
             res.add(pre);
             return;
         }
 
-        if (leftCount < n) {
-            dfs(leftCount + 1, rightCount, pre + "(", n);
+        if (left > 0) {
+            left--;
+            dfs(pre + "(", n);
+            left++;
         }
-
-
-        if (rightCount < n && leftCount > rightCount) {
-            dfs(leftCount, rightCount + 1, pre + ")", n);
+        if (right > 0 && right > left) {
+            right--;
+            dfs(pre + ")", n);
+            right++;
         }
     }
 }
