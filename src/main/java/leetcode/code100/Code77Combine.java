@@ -26,25 +26,26 @@ import java.util.List;
  * Explanation: There is 1 choose 1 = 1 total combination.
  */
 public class Code77Combine {
-    List<List<Integer>> result = new ArrayList<>();
-    LinkedList<Integer> path = new LinkedList<>();
+    List<List<Integer>> res = new ArrayList<>();
 
     public List<List<Integer>> combine(int n, int k) {
-        dfs(n, k, 1);
-        return result;
+        dfs(n, k, 1, new LinkedList<>());
+        return res;
     }
 
-    private void dfs(int n, int k, int index) {
+    private void dfs(int n, int k, int index, LinkedList<Integer> path) {
         if (path.size() == k) {
-            result.add(new ArrayList<>(path));
+            res.add(new ArrayList<>(path));
             return;
         }
 
-        for (int i = index; i <= n; i++) {
-            path.add(i);
-            dfs(n, k, i + 1);
-            path.removeLast();
+        if (index > n) {
+            return;
         }
 
+        dfs(n, k, index + 1, path);
+        path.add(index);
+        dfs(n, k, index + 1, path);
+        path.removeLast();
     }
 }
