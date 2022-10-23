@@ -22,22 +22,21 @@ import java.util.List;
  */
 public class Code78Subsets {
     List<List<Integer>> res = new ArrayList<>();
-    LinkedList<Integer> path = new LinkedList<>();
 
     public List<List<Integer>> subsets(int[] nums) {
-        dfs(nums, 0);
+        dfs(nums, 0, new LinkedList<Integer>());
         return res;
     }
 
-    private void dfs(int[] nums, int index) {
+    private void dfs(int[] nums, int index, LinkedList<Integer> path) {
         if (index == nums.length) {
             res.add(new ArrayList<>(path));
             return;
         }
 
-        dfs(nums, index + 1);
+        dfs(nums, index + 1, path);
         path.add(nums[index]);
-        dfs(nums, index + 1);
+        dfs(nums, index + 1, path);
         path.removeLast();
     }
 }
