@@ -51,7 +51,7 @@ public class Code39CombinationSum {
             result.add(new ArrayList<>(path));
             return;
         }
-
+        //这个判断必须要在后面，不然会有情况遗漏
         if (index == candidates.length) return;
 
         for (int i = 0; i * candidates[index] <= target; i++) {
