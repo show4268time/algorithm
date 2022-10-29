@@ -35,8 +35,8 @@ public class Code198Rob {
         int[] g = new int[n + 1];
 
         for (int i = 1; i <= n; i++) {
+            g[i] = Math.max(g[i - 1], f[i - 1]);
             f[i] = g[i - 1] + nums[i - 1];
-            g[i] = Math.max(f[i - 1], g[i - 1]);
         }
         return Math.max(f[n], g[n]);
     }
