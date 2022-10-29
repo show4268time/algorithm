@@ -1,7 +1,5 @@
 package leetcode.code100;
 
-import java.util.Arrays;
-
 /**
  * @author: PhilipFry
  * @create: 2022-07-09 14:34
@@ -13,36 +11,27 @@ public class Code64MinPathSum {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-        int[][] dp = new int[m][n];
-        dp[0][0] = grid[0][0];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i == 0 && j == 0) continue;
-                if (i == 0) {
-                    dp[i][j] = dp[i][j - 1] + grid[i][j];
-                } else if (j == 0) {
-                    dp[i][j] = dp[i - 1][j] + grid[i][j];
-                } else {
-                    dp[i][j] = Math.min(dp[i][j - 1], dp[i - 1][j]) + grid[i][j];
-                }
-            }
-        }
-        return dp[m - 1][n - 1];
-    }
 
-    public int minPathSum1(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
-        int[][] dp = new int[n + 1][m + 1];
+        int[][] dp = new int[m + 1][n + 1];
         dp[1][1] = grid[0][0];
-        Arrays.fill(dp[0], Integer.MAX_VALUE);
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
                 if (i == 1 && j == 1) continue;
-                if (j == 1) dp[i][j - 1] = Integer.MAX_VALUE;
-                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i - 1][j - 1];
+
+                if (i == 1) {
+                    dp[i][j] = dp[i][j - 1] + grid[i - 1][j - 1];
+                    continue;
+                }
+
+                if (j == 1) {
+                    dp[i][j] = dp[i - 1][j] + grid[i - 1][j - 1];
+                    continue;
+                }
+
+                dp[i][j] = Math.min(dp[i][j - 1], dp[i - 1][j]) + grid[i - 1][j - 1];
+
             }
         }
-        return dp[n][m];
+        return dp[m][n];
     }
 }
