@@ -14,28 +14,31 @@ package leetcode;
  * Return the maximum area of an island in grid. If there is no island, return 0.
  */
 public class Code695MaxAreaOfIsland {
+    int w = 0;
+    int h = 0;
+    int[][] g;
+
     public int maxAreaOfIsland(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
+        int m = grid.length;
+        int n = grid[0].length;
+        h = m;
+        w = n;
+        g = grid;
         int res = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (grid[i][j] == 1) res = Math.max(res, dfs(grid, i, j));
-
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != 1) continue;
+                res = Math.max(res, dfs(i, j));
             }
         }
         return res;
     }
 
-    private int dfs(int[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) return 0;
-        grid[i][j] = 0;
-        int cur = 1;
-        cur += dfs(grid, i - 1, j);
-        cur += dfs(grid, i + 1, j);
-        cur += dfs(grid, i, j - 1);
-        cur += dfs(grid, i, j + 1);
-        return cur;
+    private int dfs(int i, int j) {
+        if (i < 0 || i == h) return 0;
+        if (j < 0 || j == w) return 0;
+        if (g[i][j] != 1) return 0;
+        g[i][j] = -1;
+        return 1 + dfs(i + 1, j) + dfs(i, j + 1) + dfs(i - 1, j) + dfs(i, j - 1);
     }
 }
