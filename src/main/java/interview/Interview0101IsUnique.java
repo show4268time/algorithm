@@ -30,4 +30,15 @@ public class Interview0101IsUnique {
         }
         return true;
     }
+
+    public boolean isUnique1(String astr) {
+        if(astr.length() > 26) return false;
+        int n = 0;
+        for(int i = 0; i< astr.length(); i++){
+            int m = astr.charAt(i) - 'a';
+            if((n & (1 << m)) != 0) return false;
+            n |= (1 << m);
+        }
+        return true;
+    }
 }
