@@ -39,4 +39,24 @@ public class Interview0208DetectCycle {
         }
         return null;
     }
+
+    public ListNode detectCycle1(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null){
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(fast == slow){
+                fast = head;
+                while(fast != null){
+                    if(fast == slow) return fast;
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+            }
+        }
+        return null;
+    }
 }
